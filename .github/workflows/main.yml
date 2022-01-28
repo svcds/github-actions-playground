@@ -45,7 +45,7 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
           echo $SHA_OF_COMMIT
-          SHORT_SHA="echo ${GITHUB_SHA::7}"
+          SHORT_SHA=${GITHUB_SHA::7}
           echo $SHORT_SHA
           echo $GITHUB_SHA
           PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
