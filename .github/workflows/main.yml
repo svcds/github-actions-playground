@@ -46,6 +46,9 @@ jobs:
       - name: Only on release
         if: github.event_name == 'release'
         run: echo "RELEASE STEP"
+        
+      - name: git log some stuff
+        run: git log -10 --merges --pretty="%s"
 
       - name: Dump GitHub context
         env:
