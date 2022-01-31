@@ -1,3 +1,3 @@
 # github-actions-playground
 
-Playing around with github actions.
+Playing around with GitHub actions.
