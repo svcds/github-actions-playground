@@ -36,5 +36,5 @@ jobs:
           echo test, and deploy your project.
           echo ${{github.event_name}}
       - name: Only on release
-        if: github.event_name == "release"
+        if: github.event_name == 'release'
         run: echo "RELEASE STEP"
