@@ -40,3 +40,8 @@ jobs:
       - name: Only on release
         if: github.event_name == 'release'
         run: echo "RELEASE STEP"
+
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
