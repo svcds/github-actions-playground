@@ -38,4 +38,3 @@ jobs:
       - name: Only on release
         if: github.event_name == "release"
         run: echo "RELEASE STEP"
-        if: 
