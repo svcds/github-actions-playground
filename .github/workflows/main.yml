@@ -59,7 +59,10 @@ jobs:
         run: echo "$GITHUB_REF"
         
       - name: "Conditional on merge"
-        if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'pull_request' && contains(github.event.head_commit.message, 'Merge pull request') }}
+#       github.ref == 'refs/heads/main'
+# contains(github.event.head_commit.message, 'Merge pull request') }}
+
+        if: ${{ github.event_name == 'pull_request' && contains(github.event.head_commit.message, 'Merge pull request') }}
         run: echo "ok"
 
       - name: "Env variable in script"
