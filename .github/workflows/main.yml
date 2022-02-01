@@ -54,3 +54,8 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
+        
+      - name: "Conditional on merge"
+        if: ${{ github.ref == 'refs/heads/master' }} && github.event_name == "push" && github.event.head_commit.message =~ /^(Merge pull request)/
+        run: echo "ok"
+
