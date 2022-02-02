@@ -6,7 +6,7 @@ on:
     outputs:
       secondword:
         description: "The second output string"
-        value: ${{ jobs.setup_env_variables.outputs.output2 }}
+        value: ${{ jobs.setup_env_variables.outputs.output1 }}
 
 
 jobs:
