@@ -34,4 +34,4 @@ jobs:
       output1: ${{ steps.step1.outputs.firstword }}
     steps:
       - id: step1
-        run: echo "::set-output name=firstword::hello"
+        run: echo "::add-mask name=firstword::hello"
