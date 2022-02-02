@@ -30,6 +30,5 @@ jobs:
       - name: some step
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: |
-          echo "$GITHUB_CONTEXT"
-          echo $FIRST_WORD
+        run: echo ${{ env.FIRST_WORD }}
+        # run: echo "$GITHUB_CONTEXT"
