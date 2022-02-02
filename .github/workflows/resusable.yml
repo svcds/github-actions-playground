@@ -1,0 +1,13 @@
+name: Setup
+
+on:
+  workflow_call:
+
+jobs:
+  setup_env_variables:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Environment Variables
+        run: echo "FOO=bar" >> $GITHUB_ENV
+      - name: Print Environment Variables
+        run: echo ${{ env.FOO }}

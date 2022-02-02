@@ -27,6 +27,8 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - uses: ./.github/workflows/reusable.yml
+
       - name: Set some env variables
         run: echo "FETCH_DEPTH=2" >> $GITHUB_ENV
 
