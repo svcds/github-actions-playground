@@ -2,7 +2,14 @@ name: Setup
 
 on:
   workflow_call:
-  workflow_dispatch:
+    outputs:
+    firstword:
+      description: "The first output string"
+      value: ${{ jobs.example_job.outputs.output1 }}
+    secondword:
+      description: "The second output string"
+      value: ${{ jobs.example_job.outputs.output2 }}
+
 
 jobs:
   setup_env_variables:
@@ -12,3 +19,5 @@ jobs:
         run: echo "FOO=bar" >> $GITHUB_ENV
       - name: Print Environment Variables
         run: echo ${{ env.FOO }}
+      - id: step2
+        run: echo "::add-mask name=secondword::${{ env.FOO }}"
