@@ -23,6 +23,7 @@ jobs:
   setup_env:
     uses: ./.github/workflows/reusable.yml
   another_job:
+    runs-on: ubuntu-latest
     needs: setup_env
     steps:
       - run: echo ${{ needs.job1.outputs.firstword }}
