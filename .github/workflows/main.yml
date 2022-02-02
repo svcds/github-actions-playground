@@ -35,7 +35,7 @@ jobs:
         with:
           fetch-depth:  $FETCH_DEPTH
 
-      - uses: ./.github/workflows/reusable.yml
+      - uses: svcds/github-acitons-playground/.github/workflows/reusable.yml
 
 
 
