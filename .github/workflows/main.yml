@@ -27,8 +27,6 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - uses: ./.github/workflows/reusable.yml
-
       - name: Set some env variables
         run: echo "FETCH_DEPTH=2" >> $GITHUB_ENV
 
@@ -36,6 +34,10 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth:  $FETCH_DEPTH
+
+      - uses: ./.github/workflows/reusable.yml
+
+
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
