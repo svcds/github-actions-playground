@@ -7,13 +7,8 @@ on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [ main ]
-  pull_request_target:
-    types: [closed]
-    branches: [main]
   pull_request:
     branches: [ main ]
-  release:
-    types: [created]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -26,61 +21,15 @@ jobs:
     runs-on: ubuntu-latest
     needs: setup_env
     steps:
-      - run: echo ${{ needs.setup_env.outputs.secret_firstword }}
-  build:
-    # The type of runner that the job will run on
+      - run: echo "FIRST_WORD=${{ needs.setup_env.outputs.secret_firstword }}" >> $GITHUB_ENV
+  yet_another_job:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    needs: another_job
+    
     steps:
-      - name: Let's see if we got those good old reusable variables
-        run: echo ${{ needs.setup_env.outputs.secondword }}
-      - name: Set some env variables
-        run: echo "FETCH_DEPTH=2" >> $GITHUB_ENV
-
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth:  $FETCH_DEPTH
-
-
-
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-        
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
-          echo ${{github.event_name}}
-      - name: Only on release
-        if: github.event_name == 'release'
-        run: echo "RELEASE STEP"
-        
-      - name: git log some stuff
-        run: git log -10 --merges --pretty="%s"
-
-      - name: Dump GitHub context
+      - name: some step
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
-        
-      - name: Dump GITHUB_REF
-        run: echo "$GITHUB_REF"
-        
-      - name: "Conditional on merge"
-#       github.ref == 'refs/heads/main'
-# contains(github.event.head_commit.message, 'Merge pull request') }}
-
-        if: ${{ github.event_name == 'pull_request' && contains(github.event.head_commit.message, 'Merge pull request') }}
-        run: echo "ok"
-
-      - name: "Env variable in script"
-        env:
-          SOME_VAR: "cheese"
-        run: .github/scripts/hello.sh
-
+        run: |
+          echo "$GITHUB_CONTEXT"
+          echo $FIRST_WORD
