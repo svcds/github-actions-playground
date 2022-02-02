@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
   workflow_call:
     outputs:
-    secondword:
-      description: "The second output string"
-      value: ${{ jobs.setup_env_variables.outputs.output2 }}
+      secondword:
+        description: "The second output string"
+        value: ${{ jobs.setup_env_variables.outputs.output2 }}
 
 
 jobs:
