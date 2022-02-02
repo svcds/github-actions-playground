@@ -22,6 +22,10 @@ on:
 jobs:
   setup_env:
     uses: ./.github/workflows/reusable.yml
+  another_job:
+    needs: setup_env
+    steps:
+      - run: echo ${{ needs.job1.outputs.firstword }}
   build:
     needs: setup_env
     # The type of runner that the job will run on

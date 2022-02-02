@@ -1,21 +1,37 @@
-name: Setup
+# name: Setup
+# on:
+#   workflow_dispatch:
+#   workflow_call:
+#     outputs:
+#       secondword:
+#         description: "The second output string"
+#         value: ${{ jobs.setup_env_variables.outputs.output1 }}
+# jobs:
+#   setup_env_variables:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Setup Environment Variables
+#         run: echo "FOO=bar" >> $GITHUB_ENV
+#       - name: Print Environment Variables
+#         run: echo ${{ env.FOO }}
+#       - id: step2
+#         run: echo "::add-mask name=secondword::$FOO"
+
+name: Reusable workflow
 
 on:
-  workflow_dispatch:
   workflow_call:
     outputs:
-      secondword:
-        description: "The second output string"
-        value: ${{ jobs.setup_env_variables.outputs.output1 }}
-
+      firstword:
+        description: "The first output string"
+        value: ${{ jobs.example_job.outputs.output1 }}
 
 jobs:
-  setup_env_variables:
+  example_job:
+    name: Generate output
     runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.step1.outputs.firstword }}
     steps:
-      - name: Setup Environment Variables
-        run: echo "FOO=bar" >> $GITHUB_ENV
-      - name: Print Environment Variables
-        run: echo ${{ env.FOO }}
-      - id: step2
-        run: echo "::add-mask name=secondword::$FOO"
+      - id: step1
+        run: echo "::set-output name=firstword::hello"
