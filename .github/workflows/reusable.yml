@@ -22,7 +22,7 @@ name: Reusable workflow
 on:
   workflow_call:
     outputs:
-      firstword:
+      secret_firstword:
         description: "The first output string"
         value: ${{ jobs.example_job.outputs.output1 }}
 
@@ -34,4 +34,4 @@ jobs:
       output1: ${{ steps.step1.outputs.firstword }}
     steps:
       - id: step1
-        run: echo "::add-mask name=firstword::hello"
+        run: echo "::set-output name=firstword::hello"

@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: setup_env
     steps:
-      - run: echo ${{ needs.setup_env.outputs.firstword }}
+      - run: echo ${{ needs.setup_env.outputs.secret_firstword }}
   build:
     needs: setup_env
     # The type of runner that the job will run on
