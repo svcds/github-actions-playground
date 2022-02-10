@@ -1,0 +1,8 @@
+on:
+  push:
+    branches: [main]
+
+jobs:
+  print_short_sha:
+    steps:
+      - run: ${{ env.GITHUB_SHA }}
