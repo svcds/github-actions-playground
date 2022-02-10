@@ -35,3 +35,5 @@ jobs:
         run: echo $GITHUB_CONTEXT
       - name: dump github ref
         run: echo $GITHUB_REF
+      - name: dump github ref name
+        run: echo $GITHUB_REF_NAME
