@@ -32,6 +32,6 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo ${{ env.FIRST_WORD }}
       - name: dump github context
-        run: echo "$GITHUB_CONTEXT"
+        run: echo $GITHUB_CONTEXT
       - name: dump github ref
         run: echo $GITHUB_REF
