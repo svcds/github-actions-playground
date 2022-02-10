@@ -45,6 +45,6 @@ jobs:
       - name: dump github context
         run: echo $GITHUB_CONTEXT
       - name: dump SHORT_SHA
-        run: echo ${{ steps.set_short_sha.outputs.SHORT_SHA }}
+        run: echo ${{ jobs.set_short_sha.outputs.SHORT_SHA }}
       - name: dump github ref name
         run: echo $GITHUB_REF_NAME
