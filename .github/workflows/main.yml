@@ -23,7 +23,9 @@ jobs:
     outputs: 
       SHORT_SHA: ${{ steps.set-short-sha.outputs.SHORT_SHA }}
     steps:
-      - run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
+      - run: |
+          echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
+          echo env.SHORT_SHA
       - id: set-short-sha
         run: echo "::set-output name=SHORT_SHA::$SHORT_SHA"
 
@@ -45,6 +47,6 @@ jobs:
       - name: dump github context
         run: echo $GITHUB_CONTEXT
       - name: dump SHORT_SHA
-        run: echo ${{ needs.jobs.set_short_sha.outputs.SHORT_SHA }}
+        run: echo ${{ needs.set_short_sha.outputs.SHORT_SHA }}
       - name: dump github ref name
         run: echo $GITHUB_REF_NAME
