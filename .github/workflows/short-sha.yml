@@ -4,5 +4,6 @@ on:
 
 jobs:
   print_short_sha:
+    runs-on: ubuntu-latest
     steps:
       - run: ${{ env.GITHUB_SHA }}
